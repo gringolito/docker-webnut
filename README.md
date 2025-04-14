@@ -1,16 +1,14 @@
-![Docker Image CI](https://github.com/edgd1er/docker-webnut/workflows/Docker%20Image%20CI/badge.svg)
+![Docker Image CI](https://github.com/gringolito/docker-webnut/workflows/Docker%20Image%20CI/badge.svg)
 
-Difference from [teknologist's](https://github.com/rshipp/webNUT) version:
-- switch to python3-alpine3.20 as base image to reduce image size (900Mb -> 80Mb)
-- added actions to build image and publish to docker hub.
-- add healtch check
-- add volume /config to persist config.
+
+Difference from [edgd1er's](https://github.com/edgd1er/docker-webnut) version:
+- Using [jasonhensler's](https://github.com/jasonhensler/webNUT) fork of webNUT with added progress bars to the current Load and battery level columns
 
 # docker-webNUT
 
 webNUT (UPS network monitoring web ui) dockerized.
 
-More infos on webNUT:  https://github.com/rshipp/webNUT
+More infos on webNUT:  https://github.com/jasonhensler/webNUT
 
 Set the following environment variables:
 
@@ -22,19 +20,16 @@ Set the following environment variables:
 
 **UPS_PASSWORD**     with NUT server  password   *(default: secret)*
 
-
-
-
 Run with:
 
-> docker run -e UPS_HOST="10.11.12.13"  -e UPS_PORT="3493" -e UPS_USER="monuser" -e UPS_PASSWORD="secret" -p 6543:6543 --mount source=config,target=/config edgd1er/webnut:latest
+> docker run -e UPS_HOST="10.11.12.13"  -e UPS_PORT="3493" -e UPS_USER="monuser" -e UPS_PASSWORD="secret" -p 6543:6543 --mount source=config,target=/config gringolito/webnut:latest
 
 # Docker-compose
 
 ```
 services:
   webnut:
-    image: edgd1er/webnut:latest
+    image: gringolito/webnut:latest
     restart: always
     environment:
       UPS_HOST: "10.11.12.13"

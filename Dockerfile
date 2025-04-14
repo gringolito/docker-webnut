@@ -1,13 +1,13 @@
 # syntax=docker/dockerfile:1
 FROM python:3-alpine3.20
 
-LABEL maintainer=edgd1er@hotmail.com
+LABEL maintainer=filipe@gringolito.com
 EXPOSE 6543
 
 WORKDIR /app/
 #hadolint ignore=DL3018
 RUN adduser -D user && apk add --no-cache bash git curl \
-    && git clone https://github.com/rshipp/webNUT.git \
+    && git clone https://github.com/jasonhensler/webNUT.git \
     && pip install --no-cache-dir -e webNUT \
     && mkdir /config && touch /config/config.py && chown user:users /config/config.py /config \
     && echo "alias checkhealth='curl -f http://localhost:6543 || exit 1'" >>/home/user/.bashrc \
